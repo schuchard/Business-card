@@ -1,0 +1,7 @@
+OBJECTIVES:
+ ☐ User can authenticate with LinkedIn's OAuth API
+ ☐ Once authenticated, app will pull down users public profile
+ ☐ Present user with virtual business card, displaying appropriate info.
+ ☐ Allow user to do inline editing to the virtual business card displaying the appropriate information (locally)
+ ☐ Allow user to save their virtual business card to DB
+   ☐ Share with URL
