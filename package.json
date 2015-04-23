@@ -1,7 +1,19 @@
 {
-	"dependencies": {
-		"express": "^4",
-		"jade": "^1",
-		"body-parser": "^1"
-	}
+  "dependencies": {
+    "body-parser": "^1",
+    "express": "^4",
+    "jade": "^1",
+    "mongoose": "^4.0.2"
+  },
+  "name": "ombud",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node app.js",
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/schuchard/Virtual-Business-Card-LinkedIn.git"
+  },
+  "author": "Kevin Schuchard",
+  "license": "ISC",
 }
