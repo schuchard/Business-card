@@ -1,8 +1,13 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var indexController = require('./controllers/index.js');
-var cardController = require('./controllers/card.js');
-var mongoose = require('mongoose');
+var express = require('express'),
+    routes = require('./routes/routes.js'),
+    UserHandler = require('./server/UserHandler.js'),
+    AuthHandler = require('./server/AuthHandler.js'),
+    LinkedInStrategy = require('passport-linkedin-oauth2').Strategy,
+    bodyParser = require('body-parser'),
+    indexController = require('./controllers/index.js'),
+    cardController = require('./controllers/card.js'),
+    mongoose = require('mongoose');
+
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/ombudapp');
 
 var app = express();

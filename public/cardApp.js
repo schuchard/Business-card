@@ -4,6 +4,9 @@ var cardApp = angular.module('cardApp',
 cardApp.config(function($routeProvider, $httpProvider, $locationProvider){
   // Define routes
   $routeProvider
+    .when('/', {
+      controller: 'loginController'
+    })
     .when('/view', {
       templateUrl: '/templates/view',
       controller: 'viewController'
@@ -13,6 +16,25 @@ cardApp.config(function($routeProvider, $httpProvider, $locationProvider){
       controller: 'editController'
     });
 });
+
+
+cardApp.controller('viewController', [function(){
+
+}]);
+
+cardApp.controller('loginController', ['$log','$http','$scope', function($log, $http, $scope){
+
+  $scope.login = function(){
+
+    $http.get('https://www.linkedin.com/uas/oauth2/authorization')
+      .success(function(data){
+        $log.log('success data: ', data);
+      })
+      .error(function(error){
+        $log.log('error: ', error);
+      });
+  };
+}]);
 
 // Data from server:
 cardApp.factory('Card', ['$Resource', function($Resource){
@@ -28,6 +50,7 @@ cardApp.factory('Card', ['$Resource', function($Resource){
   };
 }]);
 
-cardApp.controller('viewController', [function(){
+cardApp.factory('AuthService', ['$resource', function($resource){
 
+  );
 }]);

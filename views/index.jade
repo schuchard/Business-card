@@ -3,4 +3,7 @@ extends layout
 block content
   div
   h1 Hello!
+  md-content(layout-padding, ng-controller='loginController')
+    md-button.md-raised.md-primary(flex, ng-click='login()') Log In
+
   div(ng-view)
