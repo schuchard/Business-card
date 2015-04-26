@@ -2,8 +2,8 @@ extends layout
 
 block content
   div
-  h1 Hello!
+  h1 LinkedIn Login
   md-content(layout-padding, ng-controller='loginController')
-    md-button.md-raised.md-primary(flex, ng-click='login()') Log In
+    a.md-raised.md-primary(href='/auth/linkedin') Login
 
   div(ng-view)
