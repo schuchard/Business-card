@@ -4,6 +4,7 @@ block content
   div
   h1 LinkedIn Login
   md-content(layout-padding, ng-controller='loginController')
-    a.md-raised.md-primary(href='/auth/linkedin') Login
+    a(href='/auth/linkedin') Login
+    md-button.md-raised.md-primary(flex, ng-click='login()') Login 2
 
   div(ng-view)

@@ -20,7 +20,7 @@ cardApp.config(function($routeProvider, $httpProvider, $locationProvider){
     .when('/failed', {
       templateUrl: 'templates/failed',
     });
-     // $locationProvider.html5Mode(true);
+  delete $httpProvider.defaults.headers.common['X-Requested-With'];
 });
 
 
@@ -76,7 +76,7 @@ cardApp.factory('authInterceptor', function ($log, $rootScope, $q, $window, $loc
         config.headers['X-Access-Token'] = $window.sessionStorage.token;
         config.headers['X-Key'] = $window.sessionStorage.user;
         config.headers['Content-Type'] = "application/json";
-        // $log.log('I have a token');
+        $log.log('I have a token');
       }
       return config || $q.when(config);
     },

@@ -21,12 +21,12 @@ app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
+app.use(passport.initialize());
 app.use(session({
   secret: 'secret',
   saveUninitialized: true,
   resave: true
 }));
-app.use(passport.initialize());
 app.use(passport.session());
 
 app.all('/*', function(req, res, next) {
@@ -80,7 +80,7 @@ passport.use('linkedin', new OAuth2Strategy({
       }
     });
     console.log('Profile: ');
-    return  next(null, profile);
+    // return  next(null, profile);
   });
 
 }));
@@ -92,7 +92,7 @@ passport.use('linkedin', new OAuth2Strategy({
 //  session.
 passport.serializeUser(function(user, next){
    console.log('serializeUser: ' + user._id);
-  next(null, user.id);
+  next(null, user._id);
 });
 
 // DESERIALIZATION:
