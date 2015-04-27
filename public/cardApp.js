@@ -9,6 +9,12 @@ cardApp.config(function($routeProvider, $httpProvider, $locationProvider){
     .when('/', {
       controller: 'loginController'
     })
+    .when('/login', {
+      templateUrl: '/templates/login'
+    })
+    .when('/account', {
+      templateUrl: '/templates/account'
+    })
     .when('/view', {
       templateUrl: '/templates/view',
       controller: 'viewController'
@@ -19,6 +25,9 @@ cardApp.config(function($routeProvider, $httpProvider, $locationProvider){
     })
     .when('/failed', {
       templateUrl: 'templates/failed',
+    })
+    .otherwise({
+      redirectTo:'/'
     });
   delete $httpProvider.defaults.headers.common['X-Requested-With'];
 });

@@ -4,11 +4,11 @@ var express = require('express'),
     mongoose = require('mongoose'),
     passport = require('passport'),
     session = require('express-session'),
+    request = require('request'),
     User = require('./models/user.js'),
     OAuth2Strategy = require('passport-oauth').OAuth2Strategy,
     indexController = require('./controllers/index.js'),
-    cardController = require('./controllers/card.js'),
-    authentication = require('./routes/authenticate.js');
+    cardController = require('./controllers/card.js');
 
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/ombudapp');
 
@@ -29,18 +29,23 @@ app.use(session({
 }));
 app.use(passport.session());
 
-app.all('/*', function(req, res, next) {
-  // CORS headers
-  res.header("Access-Control-Allow-Origin", "*"); // restrict it to the required domain
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  // Set custom headers for CORS
-  res.header('Access-Control-Allow-Headers', 'Content-type,Accept,X-Access-Token,X-Key');
-  if (req.method == 'OPTIONS') {
-    res.status(200).end();
-  } else {
-    next();
-  }
-});
+// app.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   next();
+// });
+// app.all('/*', function(req, res, next) {
+//   // CORS headers
+//   res.header("Access-Control-Allow-Origin", "*"); // restrict it to the required domain
+//   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+//   // Set custom headers for CORS
+//   res.header('Access-Control-Allow-Headers', 'Content-type,Accept,X-Access-Token,X-Key');
+//   if (req.method == 'OPTIONS') {
+//     res.status(200).end();
+//   } else {
+//     next();
+//   }
+// });
 
 
 var LINKEDIN_API_KEY = '78bd02tirqtsi2';
@@ -59,6 +64,7 @@ passport.use('linkedin', new OAuth2Strategy({
 
 }, function(accessToken, refreshToken, profile, next) {
   process.nextTick(function () {
+    console.log('accessToken: ', accessToken);
     User.findOne({liID: profile.id}, function(err, user){
       if(user){
         // User found, allow access
@@ -68,7 +74,8 @@ passport.use('linkedin', new OAuth2Strategy({
         // User not found, save and allow acces
         var newUser = new User({
           liID: profile.id,
-          name: profile.firstName
+          name: profile.firstName,
+          created: Date.now()
         });
         console.log('new user saved');
         newUser.save(function(err, user){
@@ -79,8 +86,6 @@ passport.use('linkedin', new OAuth2Strategy({
         });
       }
     });
-    console.log('Profile: ');
-    // return  next(null, profile);
   });
 
 }));
@@ -91,7 +96,6 @@ passport.use('linkedin', new OAuth2Strategy({
 //  which is represented by the id, and store it into the
 //  session.
 passport.serializeUser(function(user, next){
-   console.log('serializeUser: ' + user._id);
   next(null, user._id);
 });
 
@@ -104,17 +108,30 @@ passport.deserializeUser(function(id, next){
     next(err, user);
   });
 });
+
+
+
 app.get('/', indexController.index);
 
-app.get('/auth/linkedin',
-  passport.authenticate('linkedin'),
+app.get('/account', function(req, res){
+  res.render('templates/account');
+  // User.findById(req.session.passport.user, function(err, user){
+  //   if(err){
+  //     console.log('account err: ', err);
+  //   } else {
+  //     // res.send({user:user});
+  //   }
+  // });
+});
+
+app.get('/auth/linkedin', passport.authenticate('linkedin'),
   function(req, res){
-    console.log('pass auth');
   });
 
-app.get('/auth/linkedin/callback', passport.authenticate('linkedin',{
-  successRedirect: '/',
-  failureRedirect: '/failed'
+app.get('/auth/linkedin/callback', passport.authenticate('linkedin',
+  {
+    successRedirect: '/account',
+    failureRedirect: '#/login'
 }));
 
 
@@ -129,3 +146,8 @@ var port = process.env.PORT || 3000;
 var server = app.listen(port, function() {
 	console.log('Express server listening on port ' + server.address().port);
 });
+
+function ensureAuthenticated(req, res, next){
+  if (req.isAuthenticated()) { return next();}
+  res.redirect('/');
+}
