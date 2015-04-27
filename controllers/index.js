@@ -12,6 +12,7 @@ var indexController = {
     res.render('templates/' + req.params.templateid);
   },
   /* LinkedIn Callback - Login or Save new USer */
+  /*
   callback: function(req, res){
     Linkedin.auth.getAccessToken(res, req.query.code,
       function(err, results){
@@ -64,6 +65,7 @@ var indexController = {
       res.render('templates/view');
     });
   }
+*/
 };
 
 module.exports = indexController;

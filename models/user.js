@@ -10,10 +10,10 @@ var userSchema = mongoose.Schema({
   headline: String,
   description: String,
   industry: String,
-  positions: String,
   skills: String,
   location: String,
-  image: String
+  image: String,
+  created: String
 });
 
 var User = mongoose.model('User', userSchema);

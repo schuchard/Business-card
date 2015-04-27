@@ -10,7 +10,8 @@ cardApp.config(function($routeProvider, $httpProvider, $locationProvider){
       controller: 'loginController'
     })
     .when('/login', {
-      templateUrl: '/templates/login'
+      templateUrl: '/templates/login',
+      controller: 'loginController'
     })
     .when('/account', {
       templateUrl: '/templates/account',
@@ -29,13 +30,13 @@ cardApp.config(function($routeProvider, $httpProvider, $locationProvider){
     .otherwise({
       redirectTo:'/'
     });
-  delete $httpProvider.defaults.headers.common['X-Requested-With'];
+  // delete $httpProvider.defaults.headers.common['X-Requested-With'];
 });
 
 
-cardApp.controller('viewController', [function(){
+cardApp.controller('loginController', function ($log,$scope,$http){
 
-}]);
+});
 
 
 // Data from server:
