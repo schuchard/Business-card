@@ -83,7 +83,7 @@ passport.use(new LinkedInStrategy({
           headline: profile._json.headline,
           description: profile._json.summary,
           industry: profile._json.industry,
-          // location: profile._json.location.name,
+          location: profile._json.location.name,
           image: profile._json.pictureUrl,
           created: Date.now()
         });
