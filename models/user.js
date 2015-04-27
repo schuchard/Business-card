@@ -1,8 +1,19 @@
 var mongoose = require('mongoose');
 
 var userSchema = mongoose.Schema({
-  liId: String,
-  name: String
+  linkedInID: String,
+  firstName: String,
+  lastName: String,
+  formattedName: String,
+  email: String,
+  phoneNumber: String,
+  headline: String,
+  description: String,
+  industry: String,
+  positions: String,
+  skills: String,
+  location: String,
+  image: String
 });
 
 var User = mongoose.model('User', userSchema);

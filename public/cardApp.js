@@ -37,19 +37,6 @@ cardApp.controller('viewController', [function(){
 
 }]);
 
-cardApp.controller('loginController', ['$log','$http','$scope', function($log, $http, $scope){
-
-  $scope.login = function(){
-
-    $http.get('/auth/linkedin')
-      .success(function(data){
-        $log.log('success data: ', data);
-      })
-      .error(function(error){
-        $log.log('error: ', error);
-      });
-  };
-}]);
 
 // Data from server:
 cardApp.factory('Card', ['$Resource', function($Resource){
