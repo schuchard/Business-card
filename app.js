@@ -14,8 +14,6 @@ mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/ombudapp');
 
 var app = express();
 
-
-
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'));
@@ -29,28 +27,11 @@ app.use(session({
 }));
 app.use(passport.session());
 
-// app.use(function(req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   next();
-// });
-// app.all('/*', function(req, res, next) {
-//   // CORS headers
-//   res.header("Access-Control-Allow-Origin", "*"); // restrict it to the required domain
-//   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-//   // Set custom headers for CORS
-//   res.header('Access-Control-Allow-Headers', 'Content-type,Accept,X-Access-Token,X-Key');
-//   if (req.method == 'OPTIONS') {
-//     res.status(200).end();
-//   } else {
-//     next();
-//   }
-// });
-
 
 var LINKEDIN_API_KEY = '78bd02tirqtsi2';
 var LINKEDIN_SECRET_KEY = 'VdML73gw8al6UMqB';
 var LINKEDIN_RESPONSE = 'code';
+var ACCESS_TOKEN;
 
 
 passport.use('linkedin', new OAuth2Strategy({
@@ -61,9 +42,12 @@ passport.use('linkedin', new OAuth2Strategy({
   clientSecret: LINKEDIN_SECRET_KEY,
   callbackURL: 'http://localhost:3000/auth/linkedin/callback',
   state: "ricuteznabumsifxyyfi",
+  scope: 'r_emailaddress',
 
 }, function(accessToken, refreshToken, profile, next) {
+    console.log('profile: ', profile);
   process.nextTick(function () {
+    ACCESS_TOKEN = accessToken;
     console.log('accessToken: ', accessToken);
     User.findOne({liID: profile.id}, function(err, user){
       if(user){
@@ -110,18 +94,14 @@ passport.deserializeUser(function(id, next){
 });
 
 
-
 app.get('/', indexController.index);
 
-app.get('/account', function(req, res){
-  res.render('templates/account');
-  // User.findById(req.session.passport.user, function(err, user){
-  //   if(err){
-  //     console.log('account err: ', err);
-  //   } else {
-  //     // res.send({user:user});
-  //   }
-  // });
+app.get('/view', function(req, res){
+  request.get('https://api.linkedin.com/v1/people/~:(id,num-connections,picture-url)?format=json')
+    .auth(null, null, true, ACCESS_TOKEN)
+    .on('response', function (response){
+      res.render('templates/view');
+  });
 });
 
 app.get('/auth/linkedin', passport.authenticate('linkedin'),
@@ -130,7 +110,7 @@ app.get('/auth/linkedin', passport.authenticate('linkedin'),
 
 app.get('/auth/linkedin/callback', passport.authenticate('linkedin',
   {
-    successRedirect: '/account',
+    successRedirect: '/view',
     failureRedirect: '#/login'
 }));
 

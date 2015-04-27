@@ -13,7 +13,7 @@ cardApp.config(function($routeProvider, $httpProvider, $locationProvider){
       templateUrl: '/templates/login'
     })
     .when('/account', {
-      templateUrl: '/templates/account'
+      templateUrl: '/templates/account',
     })
     .when('/view', {
       templateUrl: '/templates/view',
