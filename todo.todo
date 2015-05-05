@@ -5,3 +5,11 @@ OBJECTIVES:
  ☐ Allow user to do inline editing to the virtual business card displaying the appropriate information (locally)
  ☐ Allow user to save their virtual business card to DB
    ☐ Share with URL
+
+
+ ☐ Show card on view page
+   ☐ edit card
+   ☐ save new instance of card to DB
+   ☐ Display share url
+ ☐ Show all cards
+   ☐ click on card to view

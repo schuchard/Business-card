@@ -16,8 +16,8 @@ mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/ombudapp');
 var app = express();
 
 app.set('view engine', 'jade');
-app.set('views', __dirname + '/views');
-app.use(express.static(__dirname + '/public'));
+app.set('views', __dirname + '/client/views');
+app.use(express.static(__dirname + '/client'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(passport.initialize());
@@ -42,6 +42,7 @@ passport.serializeUser(function(user, next){
 });
 
 passport.deserializeUser(function(id, next){
+  console.log('deserial: ', id);
   User.findById(id, function(err, user){
     next(err, user);
   });
@@ -109,7 +110,7 @@ app.get('/auth/linkedin',
   });
 
 app.get('/auth/linkedin/callback', passport.authenticate('linkedin', {
-  successRedirect: '/templates/view',
+  successRedirect: '/#/view',
   failureRedirect: '/failed'
 }));
 
@@ -122,22 +123,25 @@ app.get('/auth/linkedin/callback', passport.authenticate('linkedin', {
 
 // app.get('/auth/linkedin/callback', indexController.callback);
 
-app.get('/view', ensureAuthenticated, function(req, res){
-  res.render('templates/view');
-});
-
 
 // Template routes
 app.get('/templates/:templateid', indexController.getTemplate);
 
 // Card API
+app.get('/api/v1/user', indexController.viewProfile);
 app.get('/api/v1/view', cardController.getAll);
 app.post('/api/v1/view', cardController.create);
 
 app.get('/logout', function (req, res){
-  req.logout();
-  req.session.destroy();
-  res.render('#/');
+  req.logOut();
+  req.session.destroy(function(err){
+    if(err){
+      console.log(err);
+    }
+    else {
+    res.render('templates/login');
+    }
+  });
 });
 
 var port = process.env.PORT || 3000;
@@ -147,5 +151,5 @@ var server = app.listen(port, function() {
 
 function ensureAuthenticated(req, res, next){
   if (req.isAuthenticated()) { return next();}
-  res.render('/failed');
+  res.render('/templates/failed');
 }

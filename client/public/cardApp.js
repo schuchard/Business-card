@@ -20,7 +20,7 @@ cardApp.config(function($routeProvider, $httpProvider, $locationProvider){
       templateUrl: '/templates/view',
       controller: 'viewController'
     })
-    .when('/view/:id', {
+    .when('/card/:id', {
       templateUrl: '/templates/viewCard',
       controller: 'editController'
     })
@@ -34,16 +34,30 @@ cardApp.config(function($routeProvider, $httpProvider, $locationProvider){
 });
 
 
-cardApp.controller('loginController', function ($log,$scope,$http){
-
+cardApp.controller('viewController', function ($routeParams,$log,$scope,$http,User){
+  $scope.user = User.model.get({linkdeinID: $routeParams.id});
 });
 
 
 // Data from server:
-cardApp.factory('Card', ['$Resource', function($Resource){
+cardApp.factory('Card', ['$resource', function($resource){
   // Define and return a resource connection
   var model = $resource(
     '/api/view/:id',
+    {id: '@id'}
+  );
+
+  return {
+    model: model,
+    items: model.query()
+  };
+}]);
+
+// Data from server:
+cardApp.factory('User', ['$resource', function($resource){
+  // Define and return a resource connection
+  var model = $resource(
+    '/api/v1/user/:id',
     {id: '@id'}
   );
 
