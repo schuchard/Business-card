@@ -110,7 +110,7 @@ app.get('/auth/linkedin',
   });
 
 app.get('/auth/linkedin/callback', passport.authenticate('linkedin', {
-  successRedirect: '/#/view',
+  successRedirect: '/#/detail',
   failureRedirect: '/failed'
 }));
 
@@ -129,8 +129,8 @@ app.get('/templates/:templateid', indexController.getTemplate);
 
 // Card API
 app.get('/api/v1/user', indexController.viewProfile);
-app.get('/api/v1/view', cardController.getAll);
-app.post('/api/v1/view', cardController.create);
+app.get('/api/v1/detail', cardController.getAll);
+app.post('/api/v1/detail', cardController.create);
 
 app.get('/logout', function (req, res){
   req.logOut();

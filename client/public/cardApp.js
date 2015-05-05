@@ -7,21 +7,22 @@ cardApp.config(function($routeProvider, $httpProvider, $locationProvider){
   // Define routes
   $routeProvider
     .when('/', {
+      templateUrl: 'templates/home',
       controller: 'loginController'
     })
     .when('/login', {
-      templateUrl: '/templates/login',
+      templateUrl: 'templates/login',
       controller: 'loginController'
     })
     .when('/account', {
-      templateUrl: '/templates/account',
+      templateUrl: 'templates/account',
     })
-    .when('/view', {
-      templateUrl: '/templates/view',
+    .when('/detail', {
+      templateUrl: 'templates/detail',
       controller: 'viewController'
     })
     .when('/card/:id', {
-      templateUrl: '/templates/viewCard',
+      templateUrl: 'templates/viewCard',
       controller: 'editController'
     })
     .when('/failed', {
@@ -34,6 +35,10 @@ cardApp.config(function($routeProvider, $httpProvider, $locationProvider){
 });
 
 
+cardApp.controller('loginController', function ($routeParams,$log,$scope,$http,User){
+
+});
+
 cardApp.controller('viewController', function ($routeParams,$log,$scope,$http,User){
   $scope.user = User.model.get({linkdeinID: $routeParams.id});
 });
@@ -43,7 +48,7 @@ cardApp.controller('viewController', function ($routeParams,$log,$scope,$http,Us
 cardApp.factory('Card', ['$resource', function($resource){
   // Define and return a resource connection
   var model = $resource(
-    '/api/view/:id',
+    '/api/detail/:id',
     {id: '@id'}
   );
 
