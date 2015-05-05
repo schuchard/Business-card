@@ -2,12 +2,15 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     cookieParser = require('cookie-parser'),
     mongoose = require('mongoose'),
+    cors = require('cors'),
+    jwt = require('jwt-simple'),
+    moment = require('moment'),
     passport = require('passport'),
     session = require('express-session'),
     request = require('request'),
     User = require('./server/models/user.js'),
-    LinkedInStrategy = require('passport-linkedin-oauth2').Strategy,
-    Linkedin = require('node-linkedin')(LINKEDIN_API_KEY, LINKEDIN_SECRET_KEY, LINKEDIN_CALLBACK),
+    // LinkedInStrategy = require('passport-linkedin-oauth2').Strategy,
+    // Linkedin = require('node-linkedin')(LINKEDIN_API_KEY, LINKEDIN_SECRET_KEY, LINKEDIN_CALLBACK),
     indexController = require('./server/controllers/index.js'),
     cardController = require('./server/controllers/card.js');
 
@@ -50,7 +53,7 @@ passport.deserializeUser(function(id, next){
 
 
 app.get('/', indexController.index);
-
+/*
 passport.use(new LinkedInStrategy({
   clientID: LINKEDIN_API_KEY,
   clientSecret: LINKEDIN_SECRET_KEY,
@@ -102,6 +105,7 @@ passport.use(new LinkedInStrategy({
 
   });
 }));
+*/
 
 app.get('/auth/linkedin',
   passport.authenticate('linkedin', {state: '888xxx888'}),

@@ -1,8 +1,7 @@
 var cardApp = angular.module('cardApp',
-  ['ngRoute', 'ngResource', 'ngMaterial']);
+  ['ngRoute', 'ngMessages', 'ngResource', 'satellizer']);
 
-cardApp.config(function($routeProvider, $httpProvider, $locationProvider){
-
+cardApp.config(function($routeProvider, $authProvider){
 
   // Define routes
   $routeProvider
@@ -28,10 +27,21 @@ cardApp.config(function($routeProvider, $httpProvider, $locationProvider){
     .when('/failed', {
       templateUrl: 'templates/failed',
     })
-    .otherwise({
-      redirectTo:'/'
+    .otherwise('/');
+
+    $authProvider.loginUrl = 'http://localhost:3000/auth/login';
+    $authProvider.linkedin({clientId: '78bd02tirqtsi2'});
+    $authProvider.linkedin({
+      url: '/auth/linkedin',
+      redirectUri: window.location.origin || window.location.protocol + '//' + window.location.host,
+      requiredUrlParams: ['state'],
+      scope: [],
+      scopeDelimiter: ' ',
+      state: 'STATE',
+       type: '2.0',
+       popupOptions: { width: 527, height: 582 },
+      authorizationEndpoint: 'https://www.linkedin.com/uas/oauth2/authorization'
     });
-  // delete $httpProvider.defaults.headers.common['X-Requested-With'];
 });
 
 
