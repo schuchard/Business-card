@@ -5,11 +5,11 @@ var express = require('express'),
     passport = require('passport'),
     session = require('express-session'),
     request = require('request'),
-    User = require('./models/user.js'),
+    User = require('./server/models/user.js'),
     LinkedInStrategy = require('passport-linkedin-oauth2').Strategy,
     Linkedin = require('node-linkedin')(LINKEDIN_API_KEY, LINKEDIN_SECRET_KEY, LINKEDIN_CALLBACK),
-    indexController = require('./controllers/index.js'),
-    cardController = require('./controllers/card.js');
+    indexController = require('./server/controllers/index.js'),
+    cardController = require('./server/controllers/card.js');
 
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/ombudapp');
 
