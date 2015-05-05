@@ -1,0 +1,12 @@
+.container
+  div(ng-if='isAuthenticated() && currentUser.username')
+    .row
+      div(ng-repeat='card in cards').col-lg-2.col-sm-3.col-xs-4
+        a(href='#/card/{{card.id}}')
+          p Card details here
+
+  div(ng-if='!isAuthenticated()')
+    .jumbotron
+      h2 LinkedIn
+      p
+        a(href='/auth/linkedin').btn.btn-lg.btn-success Login
