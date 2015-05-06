@@ -11,7 +11,7 @@ block content
           a(ng-if='!isAuthenticated()', href='#/login') Log in
         li
           a(ng-if='isAuthenticated()', href='', ng-click='logout()') Logout
-      ul.nav.navbar-nav.navbar-right
+      ul.nav.navbar-nav.navbar-right(ng-if=('isAuthenticated() && currentUser.data.formattedName'))
         li
           p {{currentUser.data.formattedName}}
         li
