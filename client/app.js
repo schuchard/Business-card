@@ -30,24 +30,29 @@ cardApp.config(function($routeProvider, $authProvider){
     .otherwise('/');
 
     $authProvider.loginUrl = 'http://localhost:3000/auth/login';
-    $authProvider.linkedin({clientId: '78bd02tirqtsi2'});
     $authProvider.linkedin({
+      clientId: '78bd02tirqtsi2',
       url: '/auth/linkedin',
-      redirectUri: window.location.origin || window.location.protocol + '//' + window.location.host,
+      authorizationEndpoint: 'https://www.linkedin.com/uas/oauth2/authorization',
+      redirectUri:  window.location.origin || window.location.protocol + '//' + window.location.host + '/',
       requiredUrlParams: ['state'],
       scope: [],
       scopeDelimiter: ' ',
       state: 'STATE',
        type: '2.0',
        popupOptions: { width: 527, height: 582 },
-      authorizationEndpoint: 'https://www.linkedin.com/uas/oauth2/authorization'
     });
+  })
+ .run(function($rootScope, $window, $auth) {
+  if ($auth.isAuthenticated()) {
+    $rootScope.currentUser = JSON.parse($window.localStorage.currentUser);
+  }
 });
 
 
-cardApp.controller('loginController', function ($routeParams,$log,$scope,$http,User){
+// cardApp.controller('loginController', function ($routeParams,$log,$scope,$http,User){
 
-});
+// });
 
 cardApp.controller('viewController', function ($routeParams,$log,$scope,$http,User){
   $scope.user = User.model.get({linkdeinID: $routeParams.id});
