@@ -16,7 +16,7 @@ angular.module('cardApp')
       $auth.authenticate(provider)
         .then(function(response) {
           $log.log('response: ', response);
-          $window.localStorage.currentUser = JSON.stringify(response.data.token);
+          $window.localStorage.currentUser = JSON.stringify(response.data);
           $rootScope.currentUser = angular.fromJson($window.localStorage.currentUser);
           $log.log('currentUser: ', $rootScope.currentUser);
         })

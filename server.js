@@ -68,7 +68,10 @@ app.post('/auth/linkedin', function(req, res) {
           if (existingUser) {
             var existingUserToken = createToken(existingUser);
             console.log('user found, return token: ', existingUserToken);
-            res.send({ token:  existingUserToken });
+            res.send({
+              token:  existingUserToken,
+              data: existingUser
+             });
           }
           else {
             var user = new User();
@@ -78,7 +81,10 @@ app.post('/auth/linkedin', function(req, res) {
             user.save(function() {
               var newUserToken = createToken(user);
               console.log('creating user and token: ', newUserToken);
-              res.send({ token: newUserToken });
+              res.send({
+                token: newUserToken,
+                data: user
+              });
             });
           }
         });

@@ -3,13 +3,19 @@ extends layout
 block content
   .navbar.navbar-defualt.navbar-static-top
     .container(ng-controller='NavbarCtrl')
-      .nav.navbar-nav
-        a(href='/').navbar-brand LinkedIn
+      ul.nav.navbar-nav
+        a(href='#/').navbar-brand LinkedIn
         li
           a(href='#/') Home
         li
           a(ng-if='!isAuthenticated()', href='#/login') Log in
         li
           a(ng-if='isAuthenticated()', href='', ng-click='logout()') Logout
+      ul.nav.navbar-nav.navbar-right
+        li
+          p {{currentUser.data.formattedName}}
+        li
+          img(ng-src='{{currentUser.data.image}}')
+
 
   div(ng-view)
