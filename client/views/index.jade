@@ -6,8 +6,6 @@ block content
       ul.nav.navbar-nav
         a(href='#/').navbar-brand LinkedIn
         li
-          a(href='#/') Home
-        li
           a(ng-if='!isAuthenticated()', href='#/login') Log in
         li
           a(ng-if='isAuthenticated()', href='', ng-click='logout()') Logout

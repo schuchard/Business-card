@@ -29,6 +29,10 @@ var cardController = {
     newCard.save(function(err, results){
       res.send(results);
     });
+  },
+
+  build: function(req, res){
+
   }
 };
 

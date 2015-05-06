@@ -99,6 +99,7 @@ app.post('/auth/linkedin', function(req, res) {
 
 // Card API
 app.get('/api/v1/user', indexController.viewProfile);
+app.get('/api/v1/build', isAuthenticated, cardController.build);
 app.get('/api/v1/detail', cardController.getAll);
 app.post('/api/v1/detail', cardController.create);
 
@@ -138,7 +139,8 @@ function createToken(user) {
   var payload = {
     exp: moment().add(14, 'days').unix(),
     iat: moment().unix(),
-    id: user.authID
+    id: user._id
+
   };
 
   return jwt.encode(payload, config.tokenSecret);

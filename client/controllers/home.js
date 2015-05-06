@@ -12,7 +12,7 @@ angular.module('cardApp')
       return $auth.isAuthenticated();
     };
 
-     $scope.authenticate = function(provider) {
+    $scope.authenticate = function(provider) {
       $auth.authenticate(provider)
         .then(function(response) {
           $log.log('response: ', response);
@@ -23,6 +23,13 @@ angular.module('cardApp')
         .catch(function(response) {
           $log.log(response.data);
         });
+    };
+
+    $scope.buildCard = function(){
+      $log.log('click');
+      Card.getCurrentData().success(function(data){
+
+      });
     };
 
   });

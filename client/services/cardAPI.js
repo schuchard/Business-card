@@ -13,7 +13,7 @@ angular.module('cardApp')
         // items: model.query(),
 
         getCurrentData: function(){
-          return $http.get('');
+          return $http.get('http://localhost:3000/api/v1/build');
         },
 
         getFeed: function() {

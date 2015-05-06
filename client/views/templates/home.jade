@@ -1,5 +1,7 @@
 .container
-  div(ng-if='isAuthenticated() && currentUser.username')
+  div(ng-if='isAuthenticated() && currentUser.data.formattedName')
+    p
+      a(href='', ng-click='buildCard()').btn.btn-lg.btn-primary Build a business card
     .row
       div(ng-repeat='card in cards').col-lg-2.col-sm-3.col-xs-4
         a(href='#/card/{{card.id}}')
