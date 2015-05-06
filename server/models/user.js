@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var userSchema = mongoose.Schema({
-  linkedInID: String,
+  authID: String,
   firstName: String,
   lastName: String,
   formattedName: String,

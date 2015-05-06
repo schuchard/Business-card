@@ -9,7 +9,7 @@ var cardController = {
     if(req.query._id){
       Card.findById(req.query._id, function(err, results){
         if(err){
-          console.log('error form findById Card: ', err);
+          console.log('error find findById Card: ', err);
         }
         res.send(results);
       });

@@ -1,8 +1,28 @@
 angular.module('cardApp')
-  .controller('HomeCtrl', function($scope, $window, $rootScope, $auth){
+  .controller('HomeCtrl', function($log, $scope, $window, $rootScope, $auth, Card){
+
+    // $log.log(currentUser);
+     if ($auth.isAuthenticated() && ($rootScope.currentUser && $rootScope.currentUser.username)) {
+      // Card.getFeed().success(function(data) {
+      //   $scope.photos = data;
+      // });
+    }
 
     $scope.isAuthenticated = function() {
-      // Check if logged in
+      return $auth.isAuthenticated();
+    };
+
+     $scope.authenticate = function(provider) {
+      $auth.authenticate(provider)
+        .then(function(response) {
+          $log.log('response: ', response);
+          $window.localStorage.currentUser = JSON.stringify(response.data.token);
+          $rootScope.currentUser = angular.fromJson($window.localStorage.currentUser);
+          $log.log('currentUser: ', $rootScope.currentUser);
+        })
+        .catch(function(response) {
+          $log.log(response.data);
+        });
     };
 
   });
