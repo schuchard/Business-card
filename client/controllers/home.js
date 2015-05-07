@@ -26,7 +26,6 @@ angular.module('cardApp')
     };
 
     $scope.buildCard = function(){
-      $log.log('click');
       Card.getCurrentData().success(function(data){
         $scope.data = data;
       });

@@ -16,6 +16,10 @@
         .col-lg-10
           input.form-control(type="text", value="{{data.positions.values[0].company.name}}")
       .form-group
+        label.col-lg-2.control-label(for="industry") Industry
+        .col-lg-10
+          input.form-control(type="text", value="{{data.industry}}")
+      .form-group
         label.col-lg-2.control-label(for="description") Description
         .col-lg-10
           textarea#textArea.form-control(rows="3") {{data.summary}}
