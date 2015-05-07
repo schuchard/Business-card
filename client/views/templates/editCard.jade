@@ -1,38 +1,37 @@
 .container(ng-show='data')
-  form.form-horizontal
+  form.form-horizontal(name='editCardForm')
     fieldset
       legend Edit Card
       img(ng-src='{{data.pictureUrl}}')
       .form-group
-        label.col-lg-2.control-label(for="name") Name
-        .col-lg-10
-          input.form-control(type="text", value="{{data.formattedName}}")
+        label.col-sm-2.control-label(for="name") Name
+        .col-sm-10
+          input.form-control(type="text", ng-model="data.formattedName")
       .form-group
-        label.col-lg-2.control-label(for="title") Title
-        .col-lg-10
-          input.form-control(type="text", value="{{data.positions.values[0].title}}")
+        label.col-sm-2.control-label(for="title") Title
+        .col-sm-10
+          input.form-control(type="text", ng-model="data.positions.values[0].title")
       .form-group
-        label.col-lg-2.control-label(for="company") Company
-        .col-lg-10
-          input.form-control(type="text", value="{{data.positions.values[0].company.name}}")
+        label.col-sm-2.control-label(for="company") Company
+        .col-sm-10
+          input.form-control(type="text", ng-model="data.positions.values[0].company.name")
       .form-group
-        label.col-lg-2.control-label(for="industry") Industry
-        .col-lg-10
-          input.form-control(type="text", value="{{data.industry}}")
+        label.col-sm-2.control-label(for="industry") Industry
+        .col-sm-10
+          input.form-control(type="text", ng-model="data.industry")
       .form-group
-        label.col-lg-2.control-label(for="description") Description
-        .col-lg-10
+        label.col-sm-2.control-label(for="description") Description
+        .col-sm-10
           textarea#textArea.form-control(rows="3") {{data.summary}}
       .form-group
-        label.col-lg-2.control-label(for="skills") Skills
-        .col-lg-10
-          input.form-contorl(style='margin-right: 25px', size='30' type='text', ng-repeat='skill in data.skills.values | orderBy: "skill.name"', value='{{skill.skill.name}}')
+        label.col-sm-2.control-label(for="skills") Skills
+        .col-sm-10
+          input.form-contorl(style='margin-right: 25px', size='25' type='text', ng-repeat='skill in data.skills.values', ng-model='skill.skill.name')
       .form-group
-        label.col-lg-2.control-label(for="location") Location
-        .col-lg-10
-          input.form-control(type="text", value="{{data.location.name}}")
-
+        label.col-sm-2.control-label(for="location") Location
+        .col-sm-10
+          input.form-control(type="text", ng-model="data.location.name")
       .form-group
-        .col-lg-10.col-lg-offset-2
-          button.btn.btn-primary(type="submit") Submit
+        .col-sm-10.col-sm-offset-2
+          button.btn.btn-primary(ng-click='saveCard(data)',type="submit") Submit
           button.btn.btn-default(type="reset") Cancel

@@ -31,5 +31,9 @@ angular.module('cardApp')
       });
     };
 
+    $scope.saveCard = function(input){
+      $log.log(input);
+    };
+
   });
 
