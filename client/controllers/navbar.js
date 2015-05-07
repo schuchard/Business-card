@@ -8,6 +8,7 @@ angular.module('cardApp')
   $scope.logout = function(){
     $auth.logout();
     delete $window.localStorage.currentUser;
+    delete $rootScope.currentUser;
   };
 
 });

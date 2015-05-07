@@ -37,7 +37,7 @@ app.use(cors());
 
 app.get('/', indexController.index);
 
-
+// Authenticate user through LinkedIn
 app.post('/auth/linkedin', function(req, res) {
   var accessTokenUrl = 'https://www.linkedin.com/uas/oauth2/accessToken';
   var peopleApiUrl = 'https://api.linkedin.com/v1/people/~:(id,first-name,last-name,email-address,picture-url)';
@@ -94,13 +94,12 @@ app.post('/auth/linkedin', function(req, res) {
   });
 });
 
+app.get('/api/v1/user', indexController.viewProfile);
 
-
-
+// Populate virtual business card
+app.get('/api/v1/build', isAuthenticated, cardController.build);
 
 // Card API
-app.get('/api/v1/user', indexController.viewProfile);
-app.get('/api/v1/build', isAuthenticated, cardController.build);
 app.get('/api/v1/detail', cardController.getAll);
 app.post('/api/v1/detail', isAuthenticated, cardController.create);
 

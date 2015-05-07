@@ -8,7 +8,11 @@ var cardSchema = mongoose.Schema({
   skills: Object,
   location: Object,
   pictureUrl: String,
-  profileUrl: String
+  profileUrl: String,
+  created: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 module.exports = mongoose.model('Card', cardSchema);

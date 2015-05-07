@@ -13,9 +13,9 @@ cardApp.config(function($routeProvider, $authProvider){
       templateUrl: 'templates/login',
       controller: 'HomeCtrl'
     })
-    .when('/editCard', {
-      templateUrl: 'templates/editCard',
-    })
+    // .when('/editCard', {
+    //   templateUrl: 'templates/editCard',
+    // })
     .when('/account', {
       templateUrl: 'templates/account',
     })
@@ -27,9 +27,9 @@ cardApp.config(function($routeProvider, $authProvider){
       templateUrl: 'templates/viewCard',
       controller: 'editController'
     })
-    .when('/failed', {
-      templateUrl: 'templates/failed',
-    })
+    // .when('/cardTab', {
+    //   templateUrl: 'templates/cardTab',
+    // })
     .otherwise('/');
 
     $authProvider.loginUrl = 'http://localhost:3000/auth/login';
@@ -91,12 +91,12 @@ cardApp.config(function($routeProvider, $authProvider){
 // }]);
 
 
-cardApp.factory('AuthenticationService', function() {
-    var auth = {
-        isAuthenticated: false
-    };
-    return auth;
-});
+// cardApp.factory('AuthenticationService', function() {
+//     var auth = {
+//         isAuthenticated: false
+//     };
+//     return auth;
+// });
 
 // Add an interceptor for AJAX errors
 // ================================================

@@ -8,23 +8,39 @@ var cardController = {
 
   /* Get individual card or all */
   getAll: function (req, res) {
+    var header = req.headers.authorization.split(' ');
+    var token = header[1];
+    var payload = jwt.decode(token, config.tokenSecret);
+
+    User.findById(payload.id, function(err, results){
+      if(err){
+        console.log('Can\'t find user');
+      }
+
     /* If there's a query parameter for _id,
     get the individual item */
     if(req.query._id){
-      Card.findById(req.query._id, function(err, results){
+      Card.findById({cards: req.query._id}, function(err, results){
         if(err){
           console.log('error find findById Card: ', err);
         }
+        console.log('sending single card');
         res.send(results);
       });
     }
+
     /* Else get all cards */
     else {
-      Card.find({}, function(err, results){
+      User.find({},'cards', function(err, results){
+        if(err){
+          console.log('can find cards: ', err);
+        }
+        console.log('sending all cards');
         res.send(results);
-        console.log('send all');
       });
     }
+  });
+
   },
 
   /* Save card to DB */
