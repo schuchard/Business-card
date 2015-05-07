@@ -12,21 +12,15 @@ var cardController = {
     var token = header[1];
     var payload = jwt.decode(token, config.tokenSecret);
 
-    User.findById(payload.id, function(err, results){
-      if(err){
-        console.log('Can\'t find user');
-      }
-
     /* If there's a query parameter for _id,
     get the individual item */
+
     if(req.query._id){
-      Card.findById({cards: req.query._id}, function(err, results){
-        if(err){
-          console.log('error find findById Card: ', err);
-        }
-        console.log('sending single card');
-        res.send(results);
-      });
+      User.findById( payload.id, function(err, results){
+          console.log('found single card');
+          var singCard = results.cards.id(req.query._id);
+          res.send(singCard);
+        });
     }
 
     /* Else get all cards */
@@ -39,7 +33,7 @@ var cardController = {
         res.send(results);
       });
     }
-  });
+  // });
 
   },
 

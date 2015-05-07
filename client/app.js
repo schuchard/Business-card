@@ -13,9 +13,6 @@ cardApp.config(function($routeProvider, $authProvider){
       templateUrl: 'templates/login',
       controller: 'HomeCtrl'
     })
-    // .when('/editCard', {
-    //   templateUrl: 'templates/editCard',
-    // })
     .when('/account', {
       templateUrl: 'templates/account',
     })
@@ -23,14 +20,13 @@ cardApp.config(function($routeProvider, $authProvider){
       templateUrl: 'templates/detail',
       controller: 'viewController'
     })
-    .when('/card/:id', {
+    .when('/view/:id', {
       templateUrl: 'templates/viewCard',
-      controller: 'editController'
+      controller: 'ViewCtrl'
     })
-    // .when('/cardTab', {
-    //   templateUrl: 'templates/cardTab',
-    // })
-    .otherwise('/');
+    .otherwise({
+      redirectTo:'/'
+    });
 
     $authProvider.loginUrl = 'http://localhost:3000/auth/login';
     $authProvider.linkedin({
