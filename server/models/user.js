@@ -13,7 +13,8 @@ var userSchema = mongoose.Schema({
   skills: String,
   location: String,
   image: String,
-  created: String
+  created: String,
+  accessToken: String
 });
 
 var User = mongoose.model('User', userSchema);

@@ -76,6 +76,7 @@ app.post('/auth/linkedin', function(req, res) {
           else {
             var user = new User();
             user.authID = profile.id;
+            user.accessToken = params.oauth2_access_token;
             user.image = profile.pictureUrl;
             user.formattedName = profile.firstName + ' ' + profile.lastName;
             user.save(function() {
@@ -139,8 +140,8 @@ function createToken(user) {
   var payload = {
     exp: moment().add(14, 'days').unix(),
     iat: moment().unix(),
-    id: user._id
-
+    id: user._id,
+    authToken: user.accessToken
   };
 
   return jwt.encode(payload, config.tokenSecret);
