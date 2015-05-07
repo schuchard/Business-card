@@ -32,7 +32,26 @@ angular.module('cardApp')
     };
 
     $scope.saveCard = function(input){
-      $log.log(input);
+      // Build card object with new form data
+      var newCard = {
+        formattedName: input.formattedName,
+        positions: {
+          data: input.positions.values[0]
+        },
+        industry: input.industry,
+        description: input.summary,
+        skills: input.skills,
+        location: input.location,
+        pictureUrl: input.pictureUrl,
+        profileUrl: input.publicProfileUrl
+      };
+
+      // Save card to users profile
+      Card.saveCard(newCard).success(function(data){
+        $log.log(data);
+      }).error(function(err){
+        $log.log('error: ',err);
+      });
     };
 
   });

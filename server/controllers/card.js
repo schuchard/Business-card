@@ -1,4 +1,5 @@
 var Card = require('../models/card.js'),
+    User = require('../models/user.js'),
     request = require('request'),
     config = require('../config/secret.js'),
     jwt = require('jwt-simple');
@@ -28,10 +29,23 @@ var cardController = {
 
   /* Save card to DB */
   create: function(req, res){
-    var newCard = new Card(req.body);
-    newCard.save(function(err, results){
-      res.send(results);
-    });
+    var newCard = new Card(req.body.cardData);
+    var header = req.headers.authorization.split(' ');
+    var token = header[1];
+    var payload = jwt.decode(token, config.tokenSecret);
+    console.log('payload: ', payload);
+    User.findByIdAndUpdate(
+      payload.id,
+      {
+        $push:{
+          "cards": newCard
+        }
+      }, {safe:true, upsert:true},
+      function(err){
+        console.log(err);
+      }
+    );
+    res.send('success');
   },
 
   /* Pull data from LinkedIN to build virtual card */
@@ -40,7 +54,6 @@ var cardController = {
     var header = req.headers.authorization.split(' ');
     var token = header[1];
     var payload = jwt.decode(token, config.tokenSecret);
-    console.log('payload: ', payload);
     var LinkedInUrl = 'https://api.linkedin.com/v1/people/~:(formatted-name,summary,positions,skills,location,picture-url,public-profile-url,industry)';
     var params = {
       oauth2_access_token: payload.authToken,

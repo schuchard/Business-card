@@ -102,7 +102,7 @@ app.post('/auth/linkedin', function(req, res) {
 app.get('/api/v1/user', indexController.viewProfile);
 app.get('/api/v1/build', isAuthenticated, cardController.build);
 app.get('/api/v1/detail', cardController.getAll);
-app.post('/api/v1/detail', cardController.create);
+app.post('/api/v1/detail', isAuthenticated, cardController.create);
 
 
 var port = process.env.PORT || 3000;

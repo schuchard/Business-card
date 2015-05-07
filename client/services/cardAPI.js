@@ -16,6 +16,10 @@ angular.module('cardApp')
           return $http.get('http://localhost:3000/api/v1/build');
         },
 
+        saveCard: function(data){
+          return $http.post('http://localhost:3000/api/v1/detail', {cardData: data});
+        },
+
         getFeed: function() {
           return $http.get('http://instagram-server.herokuapp.com/api/feed');
         },

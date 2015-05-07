@@ -22,7 +22,7 @@
       .form-group
         label.col-sm-2.control-label(for="description") Description
         .col-sm-10
-          textarea#textArea.form-control(rows="3") {{data.summary}}
+          textarea.form-control(rows="3", ng-model='data.summary')
       .form-group
         label.col-sm-2.control-label(for="skills") Skills
         .col-sm-10

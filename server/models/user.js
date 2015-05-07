@@ -5,16 +5,10 @@ var userSchema = mongoose.Schema({
   firstName: String,
   lastName: String,
   formattedName: String,
-  email: String,
-  phoneNumber: String,
-  headline: String,
-  description: String,
-  industry: String,
-  skills: String,
-  location: String,
   image: String,
   created: String,
-  accessToken: String
+  accessToken: String,
+  cards: Array
 });
 
 var User = mongoose.model('User', userSchema);
