@@ -34,6 +34,7 @@ var cardController = {
     });
   },
 
+  /* Pull data from LinkedIN to build virtual card */
   build: function(req, res){
     console.log(req.headers.authorization);
     var header = req.headers.authorization.split(' ');
@@ -48,7 +49,6 @@ var cardController = {
 
     request.get({url: LinkedInUrl, qs: params, json: true},
       function(err, response, profile){
-
       res.send(profile);
       });
   }

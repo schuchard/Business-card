@@ -13,6 +13,9 @@ cardApp.config(function($routeProvider, $authProvider){
       templateUrl: 'templates/login',
       controller: 'HomeCtrl'
     })
+    .when('/editCard', {
+      templateUrl: 'templates/editCard',
+    })
     .when('/account', {
       templateUrl: 'templates/account',
     })
