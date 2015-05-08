@@ -9,8 +9,10 @@ OBJECTIVES:
    ✔ Submit - save and redirect #/ @done (15-05-08 09:09)
    ✔ Cancel - redirect #/ @done (15-05-08 09:09)
  ☐ Open public route to get cards
+   ✔ Create Card collection @done (15-05-08 10:58)
+   ☐ add card reference to user object
+   ☐ populate cards on request
 
  ☐ Add profile picture to public card
- ☐ Clear form after creating new card
  ☐ Float users cards
  ☐ Delete cards

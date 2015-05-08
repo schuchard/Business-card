@@ -1,7 +1,7 @@
 angular.module('cardApp')
   .controller('ViewCtrl', function($log, $scope, $window, $rootScope, $routeParams, $auth, Card){
 
-  if ($auth.isAuthenticated() && $rootScope.currentUser.data.formattedName) {
+    // Get card from database
     Card.model.get({_id: $routeParams.id},
       function(results){
         $scope.data = results;
@@ -9,6 +9,6 @@ angular.module('cardApp')
       function(err){
         $log.log(err);
       });
-  }
+
 
   });

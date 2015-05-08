@@ -6,38 +6,43 @@ var Card = require('../models/card.js'),
 
 var cardController = {
 
-  /* Get individual card or all */
+  /* Get individual card or Users saved cards */
   getAll: function (req, res) {
-    var header = req.headers.authorization.split(' ');
-    var token = header[1];
-    var payload = jwt.decode(token, config.tokenSecret);
 
-    /* If there's a query parameter for _id,
-    get the individual item */
 
-    if(payload.id && req.query._id){
-      User.findById( payload.id, function(err, results){
-          console.log('found single card');
-          var singleCard = results.cards.id(req.query._id);
-          res.send(singleCard);
-        });
-    }
-
-    /* Else get all cards if user is authenticated */
-    else if (payload.id) {
-      User.find({},'cards', function(err, results){
-        if(err){
-          console.log('can find cards: ', err);
-        }
-        console.log('sending all cards');
+    // If request query _id, return single card
+    if(req.query._id) {
+      console.log('req: ', req.query._id);
+      Card.findById(req.query._id, function(err,results){
+        console.log('err: ', err);
+        console.log('new results:');
         res.send(results);
       });
     }
 
-    else {
 
-    }
-  // });
+    // Otherwise send User's saved cards
+    else {
+      var header = req.headers.authorization.split(' ');
+      var token = header[1];
+      var payload = jwt.decode(token, config.tokenSecret);
+
+      if(payload.id) {
+        User.find(payload.id)
+          .populate('cards')
+          .exec(function(err, results){
+            if (err){ console.log(err); }
+            else {
+              console.log('pop results:');
+              res.send(results);
+            }
+          });
+      }
+      else {
+        console.log('User not authorized');
+      }
+  }
+
 
   },
 
@@ -48,23 +53,33 @@ var cardController = {
     var token = header[1];
     var payload = jwt.decode(token, config.tokenSecret);
     console.log('payload: ', payload);
-    User.findByIdAndUpdate(
-      payload.id,
-      {
-        $push:{
-          "cards": newCard
-        }
-      }, {safe:true, upsert:true},
-      function(err){
+
+    newCard.save(function(err, results){
+      if(err){
         console.log(err);
       }
-    );
-    res.send('success');
+      else {
+        console.log('saved new card:');
+        User.findByIdAndUpdate(
+          payload.id,
+          {
+            $push:{
+              "cards": newCard._id
+            }
+          }, {safe:true, upsert:true},
+          function(err, results){
+            if (err) {console.log(err);}
+            res.send('success');
+          }
+        );
+      }
+    });
+
   },
+
 
   /* Pull data from LinkedIN to build virtual card */
   build: function(req, res){
-    console.log(req.headers.authorization);
     var header = req.headers.authorization.split(' ');
     var token = header[1];
     var payload = jwt.decode(token, config.tokenSecret);
