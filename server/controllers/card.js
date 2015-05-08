@@ -11,13 +11,13 @@ var cardController = {
 
   getAll: function (req, res) {
 
-
     // If request query _id, return single card
     if(req.query._id) {
       console.log('req: ', req.query._id);
       Card.findById(req.query._id, function(err,results){
-        console.log('err: ', err);
-        console.log('new results:');
+        if (err) {
+          console.log('err form get all: ', err);
+        }
         res.send(results);
       });
     }
@@ -35,7 +35,6 @@ var cardController = {
           .exec(function(err, results){
             if (err){ console.log(err); }
             else {
-              console.log('pop results:');
               res.send(results);
             }
           });
@@ -52,18 +51,16 @@ var cardController = {
   /* Save card to DB */
 
   create: function(req, res){
-    var newCard = new Card(req.body.cardData);
+    var newCard = new Card(req.body);
     var header = req.headers.authorization.split(' ');
     var token = header[1];
     var payload = jwt.decode(token, config.tokenSecret);
-    console.log('payload: ', payload);
 
     newCard.save(function(err, results){
       if(err){
         console.log(err);
       }
       else {
-        console.log('saved new card:');
         User.findByIdAndUpdate(
           payload.id,
           {
@@ -104,6 +101,34 @@ var cardController = {
   /* Delete card from database and user accout */
 
   delete: function(req, res){
+    var header = req.headers.authorization.split(' ');
+    var token = header[1];
+    var payload = jwt.decode(token, config.tokenSecret);
+
+    if(req.query._id && payload.id) {
+
+      User.findByIdAndUpdate(
+          payload.id,
+          {$pull:{ "cards": req.query._id }},
+          {safe:true, upsert:true},
+          function(err, results){
+            if (err) {
+              console.log(err);
+            }
+
+            else {
+              console.log('removed from user');
+              Card.findByIdAndRemove(req.query._id, function(err,results){
+                if (err){
+                console.log('err from find/remove: ', err);
+                }
+                res.send(results);
+              });
+            }
+          }
+      );
+
+    }
   }
 
 };

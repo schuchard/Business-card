@@ -1,7 +1,8 @@
 angular.module('cardApp')
-  .controller('ViewCtrl', function($log, $scope, $window, $rootScope, $routeParams, $auth, Card){
+  .controller('ViewCtrl', function($log, $scope, $location, $routeParams, $auth, Card){
 
-    // Get card from database
+
+    // Get card from database on page load
     Card.model.get({_id: $routeParams.id},
       function(results){
         $scope.data = results;
@@ -10,5 +11,20 @@ angular.module('cardApp')
         $log.log(err);
       });
 
+
+    // Check if user is authenticated
+    $scope.isAuthenticated = function() {
+      return $auth.isAuthenticated();
+    };
+
+
+    // Delete card from database and users account
+    $scope.delete = function(cardId){
+      Card.remove({_id: cardId},
+        function(results){
+          $location.path('#/');
+          $log.log('success delete: ', results);
+        });
+    };
 
   });

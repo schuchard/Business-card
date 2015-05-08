@@ -10,13 +10,12 @@ angular.module('cardApp')
 
         model: model,
 
+        remove: model.delete,
+
+        post: model.post,
+
         getCurrentData: function(){
           return $http.get('http://localhost:3000/api/v1/build');
-        },
-
-        saveCard: function(data){
-          return $http.post('http://localhost:3000/api/v1/detail', {cardData: data});
-        },
+        }
       };
-
     });

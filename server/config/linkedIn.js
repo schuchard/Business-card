@@ -6,7 +6,7 @@ var request = require('request'),
 
 
 var linkedInController = {
-
+  // Authorize user with LinkedIn credentials
   authorize : function(req, res) {
     var accessTokenUrl = 'https://www.linkedin.com/uas/oauth2/accessToken';
     var peopleApiUrl = 'https://api.linkedin.com/v1/people/~:(id,first-name,last-name,email-address,picture-url)';

@@ -34,7 +34,7 @@ app.get('/api/v1/detail', cardController.getAll);
 app.post('/api/v1/detail', auth.isAuthenticated, cardController.create);
 
 // Delete card from database and user account
-app.delete('api/v1/detail', auth.isAuthenticated, cardController.delete);
+app.delete('/api/v1/detail', auth.isAuthenticated, cardController.delete);
 
 // Populate virtual business card
 app.get('/api/v1/build', auth.isAuthenticated, cardController.build);

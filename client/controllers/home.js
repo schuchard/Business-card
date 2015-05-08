@@ -1,5 +1,5 @@
 angular.module('cardApp')
-  .controller('HomeCtrl', function($log, $scope, $window, $rootScope, $auth, Card){
+  .controller('HomeCtrl', function($log, $scope, $window, $rootScope, $auth){
 
     // Check if user is authenticated
     $scope.isAuthenticated = function() {

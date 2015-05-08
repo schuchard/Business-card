@@ -1,5 +1,5 @@
 angular.module('cardApp')
-  .controller('DetailCtrl', function($log, $scope, $window, $rootScope, $auth, Card){
+  .controller('FeedCtrl', function($log, $scope, $rootScope, $auth, Card){
 
 
   if ($auth.isAuthenticated() && $rootScope.currentUser.data.formattedName) {
