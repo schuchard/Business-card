@@ -15,16 +15,16 @@ var cardController = {
     /* If there's a query parameter for _id,
     get the individual item */
 
-    if(req.query._id){
+    if(payload.id && req.query._id){
       User.findById( payload.id, function(err, results){
           console.log('found single card');
-          var singCard = results.cards.id(req.query._id);
-          res.send(singCard);
+          var singleCard = results.cards.id(req.query._id);
+          res.send(singleCard);
         });
     }
 
-    /* Else get all cards */
-    else {
+    /* Else get all cards if user is authenticated */
+    else if (payload.id) {
       User.find({},'cards', function(err, results){
         if(err){
           console.log('can find cards: ', err);
@@ -32,6 +32,10 @@ var cardController = {
         console.log('sending all cards');
         res.send(results);
       });
+    }
+
+    else {
+
     }
   // });
 

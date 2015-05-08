@@ -4,6 +4,6 @@
     .panel-body
       p {{card.industry}}
       p {{card.positions.data.title}} at {{card.positions.data.company.name}}
-      p Created on {{card.created | date:'medium'}}
-      a.btn.btn-primary.btn-sm(href='#/view/{{card._id}}') View card
+      p Created on {{card.created | date:'MMM d, y h:mm a'}}
+      a.btn.btn-primary.btn-sm(href='#/view/{{card._id}}') View
 

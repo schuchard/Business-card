@@ -5,9 +5,9 @@ OBJECTIVES:
  ✔ Allow user to do inline editing to the virtual business card displaying the appropriate information (locally) @done (15-05-07 16:36)
  ✔ Allow user to save their virtual business card to DB @done (15-05-07 16:36)
 
- ☐ Redirect to edit form page, then back to home page.
-   ☐ Submit - save and redirect #/
-   ☐ Cancel - redirect #/
+ ✔ Redirect to edit form page, then back to home page. @done (15-05-08 09:09)
+   ✔ Submit - save and redirect #/ @done (15-05-08 09:09)
+   ✔ Cancel - redirect #/ @done (15-05-08 09:09)
  ☐ Open public route to get cards
 
  ☐ Add profile picture to public card

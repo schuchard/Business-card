@@ -5,8 +5,7 @@ var express = require('express'),
     cors = require('cors'),
     jwt = require('jwt-simple'),
     moment = require('moment'),
-    passport = require('passport'),
-    // session = require('express-session'),
+    // passport = require('passport'),
     request = require('request'),
     config = require('./server/config/secret.js'),
     User = require('./server/models/user.js'),
@@ -24,17 +23,9 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors());
-// app.use(passport.initialize());
-// app.use(session({
-//   secret: 'secret',
-//   saveUninitialized: true,
-//   resave: true
-// }));
-// app.use(passport.session());
 
 
-
-
+// Index route
 app.get('/', indexController.index);
 
 // Authenticate user through LinkedIn
@@ -94,14 +85,17 @@ app.post('/auth/linkedin', function(req, res) {
   });
 });
 
-app.get('/api/v1/user', indexController.viewProfile);
+// app.get('/api/v1/user', indexController.viewProfile);
 
-// Populate virtual business card
-app.get('/api/v1/build', isAuthenticated, cardController.build);
 
 // Card API
 app.get('/api/v1/detail', cardController.getAll);
+
+// Save user card to database
 app.post('/api/v1/detail', isAuthenticated, cardController.create);
+
+// Populate virtual business card
+app.get('/api/v1/build', isAuthenticated, cardController.build);
 
 // Template routes
 app.get('/templates/:templateid', indexController.getTemplate);
