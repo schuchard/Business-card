@@ -1,6 +1,6 @@
 var request = require('request'),
     jwt = require('jwt-simple'),
-    config = require('./secret.js'),
+    config = require('../config/secret.js'),
     Auth = require('./authenticate.js'),
     User = require('../models/user.js');
 
