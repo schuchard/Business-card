@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-var cardSchema = mongoose.Schema({
+var cardSchema = new Schema({
   formattedName: String,
   positions: Object,
   industry: String,
@@ -9,6 +10,10 @@ var cardSchema = mongoose.Schema({
   location: Object,
   pictureUrl: String,
   profileUrl: String,
+  creator: {
+    type: Schema.ObjectId,
+    ref: 'User'
+  },
   created: {
     type: Date,
     default: Date.now

@@ -1,22 +1,9 @@
 var mongoose = require('mongoose');
-// var Cards = require('./card.js');
+var Schema = mongoose.Schema;
+// var ObjectId = mongoose.Types.ObjectId();
+// var ObjectID = new ObjectId;
 
-var Card = new mongoose.Schema({
-  formattedName: String,
-  positions: Object,
-  industry: String,
-  description: String,
-  skills: Object,
-  location: Object,
-  pictureUrl: String,
-  profileUrl: String,
-  created: {
-    type: Date,
-    default: Date.now
-  }
-});
-
-var userSchema = mongoose.Schema({
+var userSchema = new Schema({
   authID: String,
   firstName: String,
   lastName: String,
@@ -24,7 +11,10 @@ var userSchema = mongoose.Schema({
   image: String,
   created: String,
   accessToken: String,
-  cards: [Card]
+  cards: [{
+      type: Schema.ObjectId,
+      ref: 'Card'
+  }]
 });
 
 var User = mongoose.model('User', userSchema);

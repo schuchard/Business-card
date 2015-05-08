@@ -1,5 +1,4 @@
 .container
-
   .panel.panel-default
     h2.panel-heading {{data.formattedName}}
     .panel-body
@@ -18,4 +17,6 @@
       h3 Skills
       div(ng-repeat='skill in data.skills.values')
         p {{skill.skill.name}}
+      div(ng-if='isAuthenticated() && currentUser.data.formattedName')
+        button.btn.btn-danger(type="reset", ng-click='delete(data._id)') Delete
 

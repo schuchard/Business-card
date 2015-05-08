@@ -1,5 +1,5 @@
 angular.module('cardApp')
-  .controller('EditCtrl', function($log, $scope, $window, $rootScope, $auth, $location, Card){
+  .controller('EditCtrl', function($scope, $location, Card){
 
     // Get current LinkedIn data on page load
     Card.getCurrentData().success(function(data){
@@ -24,11 +24,8 @@ angular.module('cardApp')
 
 
       // Save card to users profile
-      Card.saveCard(newCard).success(function(data){
-        $log.log(data);
+      Card.model.save(newCard, function(data){
         $location.path('#/');
-      }).error(function(err){
-        $log.log('error: ',err);
       });
     };
 
