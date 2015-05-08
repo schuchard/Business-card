@@ -9,20 +9,13 @@ cardApp.config(function($routeProvider, $authProvider){
       templateUrl: 'templates/home',
       controller: 'HomeCtrl'
     })
-    .when('/login', {
-      templateUrl: 'templates/login',
-      controller: 'HomeCtrl'
-    })
-    .when('/account', {
-      templateUrl: 'templates/account',
-    })
-    .when('/detail', {
-      templateUrl: 'templates/detail',
-      controller: 'viewController'
-    })
     .when('/view/:id', {
       templateUrl: 'templates/viewCard',
       controller: 'ViewCtrl'
+    })
+    .when('/edit', {
+      templateUrl: 'templates/editCard',
+      controller: 'EditCtrl'
     })
     .otherwise({
       redirectTo:'/'

@@ -1,3 +1,14 @@
 .smallCard {
   width: 400px;
 }
+
+.navProfile p {
+  padding-top: 20px;
+  padding-right: 10px;
+}
+
+.navProfile img {
+  height: 50px;
+  border-radius: 25px;
+  margin-top: 5px;
+}

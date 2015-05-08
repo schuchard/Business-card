@@ -1,13 +1,13 @@
 .container
   div(ng-if='isAuthenticated() && currentUser.data.formattedName')
     p
-      a(href='', ng-click='buildCard()', ng-hide='data').btn.btn-lg.btn-primary Build a business card
+      a(href='#/edit', ng-hide='data').btn.btn-lg.btn-primary Build a business card
 
     div(ng-if='data')
       edit-card
 
     div(ng-controller='DetailCtrl')
-      h4 Saved Cards
+      h4 My Cards
       div(ng-repeat='card in myCards')
         card-feed
 

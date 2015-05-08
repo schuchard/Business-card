@@ -1,15 +1,16 @@
 OBJECTIVES:
  ✔ User can authenticate with LinkedIn's OAuth API @done (15-05-06 11:07)
- ☐ Once authenticated, app will pull down users public profile
- ☐ Present user with virtual business card, displaying appropriate info.
- ☐ Allow user to do inline editing to the virtual business card displaying the appropriate information (locally)
- ☐ Allow user to save their virtual business card to DB
-   ☐ Share with URL
+ ✔ Once authenticated, app will pull down users public profile @done (15-05-07 16:36)
+ ✔ Present user with virtual business card, displaying appropriate info. @done (15-05-07 16:36)
+ ✔ Allow user to do inline editing to the virtual business card displaying the appropriate information (locally) @done (15-05-07 16:36)
+ ✔ Allow user to save their virtual business card to DB @done (15-05-07 16:36)
 
+ ☐ Redirect to edit form page, then back to home page.
+   ☐ Submit - save and redirect #/
+   ☐ Cancel - redirect #/
+ ☐ Open public route to get cards
 
- ☐ Show card on view page
-   ☐ edit card
-   ☐ save new instance of card to DB
-   ☐ Display share url
- ☐ Show all cards
-   ☐ click on card to view
+ ☐ Add profile picture to public card
+ ☐ Clear form after creating new card
+ ☐ Float users cards
+ ☐ Delete cards

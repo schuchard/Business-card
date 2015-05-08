@@ -1,15 +1,17 @@
 extends layout
-
+//- NAVBAR
 block content
   .navbar.navbar-defualt.navbar-static-top
     .container(ng-controller='NavbarCtrl')
       ul.nav.navbar-nav
         a(href='#/').navbar-brand LinkedIn
         li
+          a(href='#/') Home
+        li
           a(ng-if='!isAuthenticated()', href='', ng-click='authenticate("linkedin")') Log in
         li
           a(ng-if='isAuthenticated()', href='', ng-click='logout()') Logout
-      ul.nav.navbar-nav.navbar-right(ng-if=('isAuthenticated() && currentUser.data.formattedName'))
+      ul.navProfile.nav.navbar-nav.navbar-right(ng-if=('isAuthenticated() && currentUser.data.formattedName'))
         li
           p {{currentUser.data.formattedName}}
         li

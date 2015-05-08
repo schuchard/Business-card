@@ -103,6 +103,8 @@ app.get('/api/v1/build', isAuthenticated, cardController.build);
 app.get('/api/v1/detail', cardController.getAll);
 app.post('/api/v1/detail', isAuthenticated, cardController.create);
 
+// Template routes
+app.get('/templates/:templateid', indexController.getTemplate);
 
 var port = process.env.PORT || 3000;
 var server = app.listen(port, function() {
@@ -146,8 +148,6 @@ function createToken(user) {
   return jwt.encode(payload, config.tokenSecret);
 }
 
-// Template routes
-app.get('/templates/:templateid', indexController.getTemplate);
 
 // app.get('/logout', function (req, res){
 //   req.logOut();
