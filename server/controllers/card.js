@@ -6,7 +6,9 @@ var Card = require('../models/card.js'),
 
 var cardController = {
 
+
   /* Get individual card or Users saved cards */
+
   getAll: function (req, res) {
 
 
@@ -46,7 +48,9 @@ var cardController = {
 
   },
 
+
   /* Save card to DB */
+
   create: function(req, res){
     var newCard = new Card(req.body.cardData);
     var header = req.headers.authorization.split(' ');
@@ -79,6 +83,7 @@ var cardController = {
 
 
   /* Pull data from LinkedIN to build virtual card */
+
   build: function(req, res){
     var header = req.headers.authorization.split(' ');
     var token = header[1];
@@ -93,7 +98,14 @@ var cardController = {
       function(err, response, profile){
       res.send(profile);
       });
+  },
+
+
+  /* Delete card from database and user accout */
+
+  delete: function(req, res){
   }
+
 };
 
 module.exports = cardController;

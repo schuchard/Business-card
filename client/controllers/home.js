@@ -1,10 +1,12 @@
 angular.module('cardApp')
   .controller('HomeCtrl', function($log, $scope, $window, $rootScope, $auth, Card){
 
+    // Check if user is authenticated
     $scope.isAuthenticated = function() {
       return $auth.isAuthenticated();
     };
 
+    // Call authenticate with provider argument
     $scope.authenticate = function(provider) {
       $auth.authenticate(provider)
         .then(function(response) {
