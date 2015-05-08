@@ -5,8 +5,8 @@ var express = require('express'),
     cors = require('cors'),
     indexController = require('./server/controllers/index.js'),
     cardController = require('./server/controllers/card.js'),
-    linkedInController = require('./server/config/linkedIn.js'),
-    auth = require('./server/config/authenticate.js');
+    linkedInController = require('./server/controllers/linkedIn.js'),
+    auth = require('./server/controllers/authenticate.js');
 
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/ombudapp');
 

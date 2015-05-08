@@ -13,7 +13,6 @@ var cardController = {
 
     // If request query _id, return single card
     if(req.query._id) {
-      console.log('req: ', req.query._id);
       Card.findById(req.query._id, function(err,results){
         if (err) {
           console.log('err form get all: ', err);
