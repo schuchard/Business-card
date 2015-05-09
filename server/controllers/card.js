@@ -22,7 +22,7 @@ var cardController = {
     }
 
 
-    // Otherwise send User's saved cards
+    // Otherwise send all User's saved cards
     else {
       var header = req.headers.authorization.split(' ');
       var token = header[1];
@@ -83,18 +83,14 @@ var cardController = {
     var payload = jwt.decode(token, config.tokenSecret);
     var LinkedInUrl = 'https://api.linkedin.com/v1/people/~:(formatted-name,summary,positions,skills,location,picture-url,public-profile-url,industry,emailAddress)';
 
-    console.log('build payload: ', payload.authToken);
-
     var params = {
       oauth2_access_token: payload.authToken,
       format: 'json'
     };
 
+    // Make "GET" request to LinkedIn API
     request.get({url: LinkedInUrl, qs: params, json: true},
       function(err, response, profile){
-      // console.log('err: ', err);
-      // console.log('response: ', response);
-      console.log('profile: ', profile);
       res.send(profile);
       });
   },
@@ -107,8 +103,10 @@ var cardController = {
     var token = header[1];
     var payload = jwt.decode(token, config.tokenSecret);
 
+
     if(req.query._id && payload.id) {
 
+      // Find user and delete card refrence from card's array
       User.findByIdAndUpdate(
           payload.id,
           {$pull:{ "cards": req.query._id }},
@@ -118,6 +116,7 @@ var cardController = {
               console.log(err);
             }
 
+            // Delete card from Cards collection
             else {
               console.log('removed from user');
               Card.findByIdAndRemove(req.query._id, function(err,results){

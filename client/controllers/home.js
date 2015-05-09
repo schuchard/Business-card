@@ -6,7 +6,8 @@ angular.module('cardApp')
       return $auth.isAuthenticated();
     };
 
-    // Call authenticate with provider argument
+    // Call authenticate with provider argument,
+    // set returned user to currentUser
     $scope.authenticate = function(provider) {
       $auth.authenticate(provider)
         .then(function(response) {

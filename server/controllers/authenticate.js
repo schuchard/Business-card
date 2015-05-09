@@ -5,7 +5,7 @@ var User = require('../models/user.js'),
 
 var authController = {
 
-  // Check if authenticated
+  // Check JWT to see if user is authenticated - Used to protect routes
   isAuthenticated: function (req, res, next) {
     if (!(req.headers && req.headers.authorization)) {
       return res.status(400).send({ message: 'You did not provide a JSON Web Token in the Authorization header.' });
@@ -29,7 +29,7 @@ var authController = {
     });
   },
 
-  // Generate a token
+  // Generate a JWT token
   createToken: function (user) {
     var payload = {
       exp: moment().add(14, 'days').unix(),
