@@ -11,6 +11,7 @@ angular.module('cardApp')
     $scope.saveCard = function(input){
       var newCard = {
         formattedName: input.formattedName,
+        email: input.emailAddress,
         positions: {
           data: input.positions.values[0]
         },

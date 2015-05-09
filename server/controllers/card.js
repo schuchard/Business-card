@@ -81,7 +81,7 @@ var cardController = {
     var header = req.headers.authorization.split(' ');
     var token = header[1];
     var payload = jwt.decode(token, config.tokenSecret);
-    var LinkedInUrl = 'https://api.linkedin.com/v1/people/~:(formatted-name,summary,positions,skills,location,picture-url,public-profile-url,industry)';
+    var LinkedInUrl = 'https://api.linkedin.com/v1/people/~:(formatted-name,summary,positions,skills,location,picture-url,public-profile-url,industry,emailAddress)';
 
     console.log('build payload: ', payload.authToken);
 
