@@ -22,3 +22,16 @@
   float: left;
   width: 370px;
 }
+
+.relContainer {
+  position: relative;
+}
+
+.cardPicture {
+ position: absolute;
+ right: 0px;
+ top: 0px;
+ height: 68px;
+ padding: 3px;
+ border-radius: 6px;
+}

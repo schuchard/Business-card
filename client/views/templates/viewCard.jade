@@ -1,6 +1,7 @@
 .container
-  .panel.panel-default
+  .panel.panel-default.relContainer
     h2.panel-heading {{data.formattedName}}
+    img.cardPicture(ng-src='{{data.pictureUrl}}')
     .panel-body
       .row
         .col-sm-4
