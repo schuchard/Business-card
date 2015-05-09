@@ -1,5 +1,4 @@
 .container(ng-show='data')
-  h1 Edit Card
   form.form-horizontal(name='editCardForm')
     fieldset
       legend Edit Card
@@ -8,6 +7,10 @@
         label.col-sm-2.control-label(for="name") Name
         .col-sm-10
           input.form-control(type="text", ng-model="data.formattedName")
+      .form-group
+        label.col-sm-2.control-label(for="email") Email
+        .col-sm-10
+          input.form-control(type="text", ng-model="data.emailAddress")
       .form-group
         label.col-sm-2.control-label(for="title") Title
         .col-sm-10
@@ -34,5 +37,5 @@
           input.form-control(type="text", ng-model="data.location.name")
       .form-group
         .col-sm-10.col-sm-offset-2
-          button.btn.btn-primary(ng-click='saveCard(data)',type="submit") Submit
+          button.btn.btn-primary(ng-click='saveCard(data)',type="submit") Save
           button.btn.btn-default(type="reset", ng-click='cancel()') Cancel

@@ -4,11 +4,12 @@ block content
   .navbar.navbar-defualt.navbar-static-top
     .container(ng-controller='NavbarCtrl')
       ul.nav.navbar-nav
-        a(href='#/').navbar-brand LinkedIn
         li
           a(href='#/') Home
         li
-          a(ng-if='!isAuthenticated()', href='', ng-click='authenticate("linkedin")') Log in
+          a(href='#/about') About
+        li
+          a(ng-if='!isAuthenticated()', href='', ng-click='authenticate("linkedin")') Login
         li
           a(ng-if='isAuthenticated()', href='', ng-click='logout()') Logout
       ul.navProfile.nav.navbar-nav.navbar-right(ng-if=('isAuthenticated() && currentUser.data.formattedName'))

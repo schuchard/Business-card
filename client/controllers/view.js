@@ -2,7 +2,7 @@ angular.module('cardApp')
   .controller('ViewCtrl', function($log, $scope, $location, $routeParams, $auth, Card){
 
 
-    // Get card from database on page load
+    // Get card from database
     Card.model.get({_id: $routeParams.id},
       function(results){
         $scope.data = results;
@@ -23,7 +23,6 @@ angular.module('cardApp')
       Card.remove({_id: cardId},
         function(results){
           $location.path('#/');
-          $log.log('success delete: ', results);
         });
     };
 

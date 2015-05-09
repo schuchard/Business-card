@@ -6,6 +6,7 @@ var request = require('request'),
 
 
 var linkedInController = {
+
   // Authorize user with LinkedIn credentials
   authorize : function(req, res) {
     var accessTokenUrl = 'https://www.linkedin.com/uas/oauth2/accessToken';
@@ -24,6 +25,7 @@ var linkedInController = {
       if (response.statusCode !== 200) {
         return res.status(response.statusCode).send({ message: body.error_description });
       }
+
       var params = {
         oauth2_access_token: body.access_token,
         format: 'json'
@@ -31,17 +33,26 @@ var linkedInController = {
 
       // Retrieve profile information about the current user.
       request.get({ url: peopleApiUrl, qs: params, json: true }, function(err, response, profile) {
+        if (err){
+          console.log('err: ', err);
+        }
 
           // Create a new user account or return an existing one.
           User.findOne({ authID: profile.id }, function(err, existingUser) {
-            // User found, send user object
+
+            // User found, send user object with new Access Token for LinkedIn API calls
             if (existingUser) {
-              var existingUserToken = Auth.createToken(existingUser);
-              res.send({
-                token:  existingUserToken,
-                data: existingUser
-               });
+              existingUser.accessToken = params.oauth2_access_token;
+              existingUser.save(function(err){
+                if(err){ console.log('err existingUser token: ', err)}
+                  var newUserToken = Auth.createToken(existingUser);
+                  res.send({
+                    token:  newUserToken,
+                    data: existingUser
+                  });
+              });
             }
+
 
             // User not found, create user
             else {

@@ -1,5 +1,5 @@
 .smallCard {
-  width: 400px;
+  width: 306px;
 }
 
 .navProfile p {
@@ -11,4 +11,39 @@
   height: 50px;
   border-radius: 25px;
   margin-top: 5px;
+}
+
+.inlineList {
+  float: left;
+  padding-right: 15px;
+}
+
+.left {
+  float: left;
+  width: 370px;
+}
+
+.relContainer {
+  position: relative;
+}
+
+.cardPicture {
+ position: absolute;
+ right: 0px;
+ top: 0px;
+ height: 68px;
+ padding: 3px;
+ border-radius: 6px;
+}
+
+.smallCard p {
+  margin-bottom: 3px;
+}
+
+.smallCard .panel-body {
+  padding-top: 0px;
+}
+
+.smallCard a {
+  margin-right: 8px;
 }

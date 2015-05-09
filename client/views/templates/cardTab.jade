@@ -2,8 +2,10 @@
   .panel.panel-default.smallCard
     h5.panel-heading {{card.formattedName}}
     .panel-body
-      p {{card.industry}}
       p {{card.positions.data.title}} at {{card.positions.data.company.name}}
+      p {{card.industry}}
       p Created on {{card.created | date:'MMM d, y h:mm a'}}
       a.btn.btn-primary.btn-sm(href='#/view/{{card._id}}') View
+      a.btn.btn-default.btn-sm(href='', ng-click='showLink=!showLink') Share
+      a(ng-show='showLink', href='http://www.virtual-li-card.herokuapp.com/#/view/{{card._id}}') share link
 

@@ -1,5 +1,6 @@
 var indexController = {
-	/* Load index page */
+
+  /* Load index page */
   index: function(req, res) {
 		res.render('index');
 	},

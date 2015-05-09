@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 
 var cardSchema = new Schema({
   formattedName: String,
+  email: String,
   positions: Object,
   industry: String,
   description: String,

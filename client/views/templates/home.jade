@@ -1,18 +1,19 @@
 .container
   div(ng-if='isAuthenticated() && currentUser.data.formattedName')
     p
-      a(href='#/edit', ng-hide='data').btn.btn-lg.btn-primary Creat a business card
+      a(href='#/edit', ng-hide='data').btn.btn-lg.btn-primary Create a business card
 
     div(ng-if='data')
       edit-card
 
     div(ng-controller='FeedCtrl')
       h4 My Cards
-      div(ng-repeat='card in myCards')
+      div.left(ng-repeat="card in myCards | orderBy: '-created'")
         card-feed
 
   div(ng-if='!isAuthenticated()')
     .jumbotron
-      h2 LinkedIn
+      h2 Build a virtual business card
+      p Login with your linkedIn credentials to create, save and share custom business cards.
       p
-        a(href='', ng-click='authenticate("linkedin")').btn.btn-lg.btn-success Login
+        a(href='', ng-click='authenticate("linkedin")').btn.btn-lg.btn-success Get Started
