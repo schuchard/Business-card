@@ -35,3 +35,15 @@
  padding: 3px;
  border-radius: 6px;
 }
+
+.smallCard p {
+  margin-bottom: 3px;
+}
+
+.smallCard .panel-body {
+  padding-top: 0px;
+}
+
+.smallCard a {
+  margin-right: 8px;
+}

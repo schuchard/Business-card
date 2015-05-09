@@ -17,6 +17,9 @@ cardApp.config(function($routeProvider, $authProvider){
       templateUrl: 'templates/editCard',
       controller: 'EditCtrl'
     })
+    .when('/about', {
+      templateUrl: 'templates/about',
+    })
     .otherwise({
       redirectTo:'/'
     });

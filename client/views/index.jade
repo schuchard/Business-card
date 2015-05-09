@@ -8,7 +8,9 @@ block content
         li
           a(href='#/') Home
         li
-          a(ng-if='!isAuthenticated()', href='', ng-click='authenticate("linkedin")') Log in
+          a(href='#/about') About
+        li
+          a(ng-if='!isAuthenticated()', href='', ng-click='authenticate("linkedin")') Login
         li
           a(ng-if='isAuthenticated()', href='', ng-click='logout()') Logout
       ul.navProfile.nav.navbar-nav.navbar-right(ng-if=('isAuthenticated() && currentUser.data.formattedName'))
