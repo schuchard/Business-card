@@ -1,14 +1,14 @@
 .container
   div(ng-if='isAuthenticated() && currentUser.data.formattedName')
     p
-      a(href='#/edit', ng-hide='data').btn.btn-lg.btn-primary Creat a business card
+      a(href='#/edit', ng-hide='data').btn.btn-lg.btn-primary Create a business card
 
     div(ng-if='data')
       edit-card
 
     div(ng-controller='FeedCtrl')
       h4 My Cards
-      div(ng-repeat='card in myCards')
+      div.left(ng-repeat="card in myCards | orderBy: '-created'")
         card-feed
 
   div(ng-if='!isAuthenticated()')

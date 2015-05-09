@@ -1,5 +1,5 @@
 .smallCard {
-  width: 400px;
+  width: 306px;
 }
 
 .navProfile p {
@@ -11,4 +11,14 @@
   height: 50px;
   border-radius: 25px;
   margin-top: 5px;
+}
+
+.inlineList {
+  float: left;
+  padding-right: 15px;
+}
+
+.left {
+  float: left;
+  width: 370px;
 }

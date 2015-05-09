@@ -16,3 +16,7 @@ OBJECTIVES:
  ✔ Delete cards @done (15-05-08 14:40)
  ☐ Add profile picture to public card
  ☐ Float users cards
+
+ ☐ Login
+   ☐ if !authID - no user found
+   ☐ Update existing user's access token every sign in

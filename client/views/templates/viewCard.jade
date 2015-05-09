@@ -2,21 +2,32 @@
   .panel.panel-default
     h2.panel-heading {{data.formattedName}}
     .panel-body
-      h3 Title
-      p {{data.positions.data.title}}
-      h3 Company
-      p {{data.positions.data.company.name}}
-      h3 Industry
-      p {{data.industry}}
-      h3 Description
-      p {{data.description}}
-      h3 Location
-      p {{data.location.name}}
-      h3 LinkedIn Profile
-      p {{data.profileUrl}}
-      h3 Skills
-      div(ng-repeat='skill in data.skills.values')
-        p {{skill.skill.name}}
+      .row
+        .col-sm-4
+          h3 Title
+          p {{data.positions.data.title}}
+        .col-sm-4
+          h3 Company
+          p {{data.positions.data.company.name}}
+        .col-sm-4
+          h3 Industry
+          p {{data.industry}}
+      .row
+        .col-sm-12
+          h3 Description
+          p {{data.description}}
+      .row
+        .col-sm-6
+          h3 Location
+          p {{data.location.name}}
+        .col-sm-6
+            h3 LinkedIn Profile
+            p {{data.profileUrl}}
+      .row
+        .col-sm-12
+          h3 Skills
+          div.inlineList(ng-repeat='skill in data.skills.values')
+            p {{skill.skill.name}}
       div(ng-if='isAuthenticated() && currentUser.data.formattedName')
         button.btn.btn-danger(type="reset", ng-click='delete(data._id)') Delete
 

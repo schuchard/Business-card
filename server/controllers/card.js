@@ -27,15 +27,12 @@ var cardController = {
       var header = req.headers.authorization.split(' ');
       var token = header[1];
       var payload = jwt.decode(token, config.tokenSecret);
-
+      console.log('get all payload: ', payload.id);
       if(payload.id) {
-        User.find(payload.id)
-          .populate('cards')
+        User.findById(payload.id).populate('cards')
           .exec(function(err, results){
-            if (err){ console.log(err); }
-            else {
-              res.send(results);
-            }
+            console.log('RESULTS: ',results);
+            res.send(results.cards);
           });
       }
       else {
@@ -85,6 +82,9 @@ var cardController = {
     var token = header[1];
     var payload = jwt.decode(token, config.tokenSecret);
     var LinkedInUrl = 'https://api.linkedin.com/v1/people/~:(formatted-name,summary,positions,skills,location,picture-url,public-profile-url,industry)';
+
+    console.log('build payload: ', payload.authToken);
+
     var params = {
       oauth2_access_token: payload.authToken,
       format: 'json'
@@ -92,6 +92,9 @@ var cardController = {
 
     request.get({url: LinkedInUrl, qs: params, json: true},
       function(err, response, profile){
+      // console.log('err: ', err);
+      // console.log('response: ', response);
+      console.log('profile: ', profile);
       res.send(profile);
       });
   },
