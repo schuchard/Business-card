@@ -30,7 +30,7 @@ cardApp.config(function($routeProvider, $authProvider){
       clientId: '78bd02tirqtsi2',
       url: '/auth/linkedin',
       authorizationEndpoint: 'https://www.linkedin.com/uas/oauth2/authorization',
-      redirectUri:  window.location.origin || window.location.protocol + '//' + window.location.host + '/',
+      redirectUri: 'http://digitalbusinesscard.herokuapp.com',
       requiredUrlParams: ['state'],
       scope: [],
       scopeDelimiter: ' ',
