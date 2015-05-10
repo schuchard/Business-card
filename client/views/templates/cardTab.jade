@@ -7,5 +7,5 @@
       p Created on {{card.created | date:'MMM d, y h:mm a'}}
       a.btn.btn-primary.btn-sm(href='#/view/{{card._id}}') View
       a.btn.btn-default.btn-sm(href='', ng-click='showLink=!showLink') Share
-      a(ng-show='showLink', href='https://digitalbusinesscard.herokuapp.com/view/{{card._id}}') share link
+      a(ng-show='showLink', href='#/view/{{card._id}}') share link
 
