@@ -1,6 +1,5 @@
 var express = require('express'),
     bodyParser = require('body-parser'),
-    cookieParser = require('cookie-parser'),
     mongoose = require('mongoose'),
     cors = require('cors'),
     indexController = require('./server/controllers/index.js'),
@@ -17,7 +16,6 @@ app.set('views', __dirname + '/client/views');
 app.use(express.static(__dirname + '/client'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-app.use(cookieParser());
 app.use(cors());
 
 
