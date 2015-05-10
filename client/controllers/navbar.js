@@ -1,5 +1,5 @@
 angular.module('cardApp')
-.controller('NavbarCtrl', function($scope, $rootScope,$window, $auth,$location){
+.controller('NavbarCtrl', function($scope, $rootScope, $window, $auth, $location, $log){
 
   // Check if user is authenticated
   $scope.isAuthenticated = function(){
