@@ -15,7 +15,7 @@ angular.module('cardApp')
         post: model.post,
 
         getCurrentData: function(){
-          return $http.get('http://localhost:3000/api/v1/build');
+          return $http.get('https://digitalbusinesscard.herokuapp.com/api/v1/build');
         }
       };
     });

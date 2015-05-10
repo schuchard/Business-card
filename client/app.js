@@ -1,5 +1,5 @@
 var cardApp = angular.module('cardApp',
-  ['ngRoute', 'ngMessages', 'ngResource', 'satellizer']);
+  ['ngRoute', 'ngResource', 'satellizer']);
 
 cardApp.config(function($routeProvider, $authProvider){
 
@@ -25,12 +25,12 @@ cardApp.config(function($routeProvider, $authProvider){
     });
 
     // Satellizer LinkedIn authorization
-    $authProvider.loginUrl = 'http://localhost:3000/auth/login';
+    $authProvider.loginUrl = 'https://digitalbusinesscard.herokuapp.com/auth/login';
     $authProvider.linkedin({
       clientId: '78bd02tirqtsi2',
-      url: '/auth/linkedin',
+      url: 'https://digitalbusinesscard.herokuapp.com/auth/linkedin',
       authorizationEndpoint: 'https://www.linkedin.com/uas/oauth2/authorization',
-      redirectUri:  window.location.origin || window.location.protocol + '//' + window.location.host + '/',
+      redirectUri:  'https://digitalbusinesscard.herokuapp.com',
       requiredUrlParams: ['state'],
       scope: [],
       scopeDelimiter: ' ',

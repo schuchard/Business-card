@@ -1,5 +1,5 @@
 // Secrets
 module.exports = {
-  clientSecret: process.env.clientSecret || 'VdML73gw8al6UMqB',
+  clientSecret: process.env.clientSecret,
   tokenSecret: process.env.tokenSecret || 'TheTokenSecret'
 };
