@@ -4,3 +4,5 @@ This application authenticates a user with their LinkedIn username and password 
 
 ### What's under the hood?
 This web app was built with Mongo, Express, Angular and Node with [Satellizer](https://github.com/sahat/satellizer) used for authentication.
+
+#### Check out the [Demo](https://digitalbusinesscard.herokuapp.com/)
