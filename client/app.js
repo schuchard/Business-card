@@ -28,7 +28,7 @@ cardApp.config(function($routeProvider, $authProvider){
     $authProvider.loginUrl = 'https://digitalbusinesscard.herokuapp.com/auth/login';
     $authProvider.linkedin({
       clientId: '78bd02tirqtsi2',
-      url: 'https://digitalbusinesscard.herokuapp.com/auth/linkedin',
+      url: '/auth/linkedin',
       authorizationEndpoint: 'https://www.linkedin.com/uas/oauth2/authorization',
       redirectUri:  'https://digitalbusinesscard.herokuapp.com',
       requiredUrlParams: ['state'],
