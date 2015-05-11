@@ -14,9 +14,9 @@ block content
           a(ng-if='isAuthenticated()',ng-cloak, href='', ng-click='logout()') Logout
       ul.navProfile.nav.navbar-nav.navbar-right(ng-if=('isAuthenticated() && currentUser.data.formattedName'))
         li
-          p(ng-cloak) {{currentUser.data.formattedName}}
+          p {{currentUser.data.formattedName}}
         li
-          img(ng-cloak, ng-src='{{currentUser.data.image}}')
+          img(ng-src='{{currentUser.data.image}}')
 
 
   div(ng-view)
