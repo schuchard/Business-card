@@ -9,14 +9,14 @@ block content
         li
           a(href='#/about') About
         li
-          a(ng-if='!isAuthenticated()', href='', ng-click='authenticate("linkedin")') Login
+          a(ng-if='!isAuthenticated()',ng-cloak, href='', ng-click='authenticate("linkedin")') Login
         li
-          a(ng-if='isAuthenticated()', href='', ng-click='logout()') Logout
+          a(ng-if='isAuthenticated()',ng-cloak, href='', ng-click='logout()') Logout
       ul.navProfile.nav.navbar-nav.navbar-right(ng-if=('isAuthenticated() && currentUser.data.formattedName'))
         li
-          p {{currentUser.data.formattedName}}
+          p(ng-cloak) {{currentUser.data.formattedName}}
         li
-          img(ng-src='{{currentUser.data.image}}')
+          img(ng-cloak, ng-src='{{currentUser.data.image}}')
 
 
   div(ng-view)
