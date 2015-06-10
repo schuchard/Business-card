@@ -3,16 +3,16 @@ extends layout
 block content
   .navbar.navbar-defualt.navbar-static-top
     .container(ng-controller='NavbarCtrl')
-      ul.nav.navbar-nav
+      ul.nav.navbar-nav(ng-cloak)
         li
           a(href='#/') Home
         li
           a(href='#/about') About
         li
-          a(ng-if='!isAuthenticated()',ng-cloak, href='', ng-click='authenticate("linkedin")') Login
+          a(ng-if='!isAuthenticated()', href='', ng-click='authenticate("linkedin")') Login
         li
-          a(ng-if='isAuthenticated()',ng-cloak, href='', ng-click='logout()') Logout
-      ul.navProfile.nav.navbar-nav.navbar-right(ng-if=('isAuthenticated() && currentUser.data.formattedName'))
+          a(ng-if='isAuthenticated()', href='', ng-click='logout()') Logout
+      ul.navProfile.nav.navbar-nav.navbar-right(ng-if=('isAuthenticated() && currentUser.data.formattedName') ng-cloak)
         li
           p {{currentUser.data.formattedName}}
         li
