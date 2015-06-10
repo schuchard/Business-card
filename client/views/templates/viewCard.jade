@@ -4,24 +4,24 @@
     img.cardPicture(ng-src='{{data.pictureUrl}}')
     .panel-body
       .row
-        .col-sm-4
-          h3 Title
-          p {{data.positions.data.title}}
-        .col-sm-4
+        //- .col-sm-4
+        //-   h3 Title
+        //-   p {{data.positions.data.title}}
+        .col-sm-6
           h3 Company
           p {{data.positions.data.company.name}}
-        .col-sm-4
+        .col-sm-6
           h3 Industry
           p {{data.industry}}
       .row
         .col-sm-12
           h3 Description
           p {{data.description}}
-      .row
-        .col-sm-12
-          h3 Skills
-          div.inlineList(ng-repeat='skill in data.skills')
-            p {{skill}}
+      //- .row
+      //-   .col-sm-12
+      //-     h3 Skills
+      //-     div.inlineList(ng-repeat='skill in data.skills')
+      //-       p {{skill}}
       .row
         .col-sm-4
             h3 Email Address

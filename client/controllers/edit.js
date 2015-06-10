@@ -27,12 +27,12 @@ angular.module('cardApp')
       var newCard = {
         formattedName: input.formattedName,
         email: input.emailAddress,
-        positions: {
-          data: input.positions.values[0]
-        },
+        // positions: {
+          // data: input.positions.values[0]
+        // },
         industry: input.industry,
         description: input.summary,
-        skills: newSkills,
+        // skills: newSkills,
         location: input.location,
         pictureUrl: input.pictureUrl,
         profileUrl: input.publicProfileUrl
