@@ -12,14 +12,6 @@
         .col-sm-10
           input.form-control(type="text", ng-model="data.emailAddress")
       .form-group
-        label.col-sm-2.control-label(for="title") Title
-        .col-sm-10
-          input.form-control(type="text", ng-model="data.positions.values[0].title")
-      .form-group
-        label.col-sm-2.control-label(for="company") Company
-        .col-sm-10
-          input.form-control(type="text", ng-model="data.positions.values[0].company.name")
-      .form-group
         label.col-sm-2.control-label(for="industry") Industry
         .col-sm-10
           input.form-control(type="text", ng-model="data.industry")
@@ -27,10 +19,6 @@
         label.col-sm-2.control-label(for="description") Description
         .col-sm-10
           textarea.form-control(rows="3", ng-model='data.summary')
-      .form-group
-        label.col-sm-2.control-label(for="skills") Skills
-        .col-sm-10
-          input.form-contorl(style='margin-right: 25px', size='25' type='text', ng-repeat='skill in data.skills.values', ng-model='skill.skill.name')
       .form-group
         label.col-sm-2.control-label(for="location") Location
         .col-sm-10
