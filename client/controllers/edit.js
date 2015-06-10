@@ -14,7 +14,7 @@ angular.module('cardApp')
       newSkills = [];
 
       // Loop through all input skills
-      input.skills.values.forEach(skillsToArray);
+      // input.skills.values.forEach(skillsToArray);
 
       // Checks for input on each skill, adds to newSkills
       function skillsToArray(element){
